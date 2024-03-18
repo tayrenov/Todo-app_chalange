@@ -1,0 +1,156 @@
+@font-face {
+    font-family: "Josefin-Sans";
+    src: url("../fonts/JosefinSans-Regular.ttf")
+}
+@font-face {
+    font-family: "Josefin-Sans";
+    src: url("../fonts/JosefinSans-Medium.ttf")
+}
+body {
+    font-size: 18px;
+    font-family: "Josefin-Sans";
+}
+
+header {
+    width: 100%;
+    height: 300px;
+}
+
+body._dark header {
+    background: linear-gradient(0deg, rgba(87,143,255,1) 0%, rgba(192,88,243,1) 0%);
+    background: url('../images/bg-desktop-dark.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+body._dark main {
+    background: #161722;
+}
+
+header .todo__container {
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+input[type='checkbox']{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top:14px;
+    left: 10px;
+
+}
+
+/***************/
+
+.todo__container {
+    width: 32%;
+    max-width: 1440px;
+    min-width: 320px;
+    margin: 0 auto;
+}
+
+.todo__container h1{
+    color:#fff;
+    text-transform: uppercase;
+    margin-bottom:.6em;
+    letter-spacing: .6em;
+    font-weight: 500;
+    
+}
+
+.todo__container form {
+    position: relative;
+}
+
+.todo__container form input[type='text']{
+    width: 100%;
+    box-sizing: border-box;
+    padding: .8em 1em .6em 2.4em;
+    border: none;
+    background:#25273C;
+    color:#777A92;
+    border-radius: 6px;
+    box-shadow: 0 0 24px rgba(0,0,0,.4);
+    outline: none;
+}
+.todo__container form input[type='text']:focus {
+    color:#E4E5F1;
+}
+/*******************/
+
+.switch-theme {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top:33%;
+    right: 0px;
+    cursor: pointer;
+}
+
+.switch-theme.dark-icn{
+    background: url('../images/icon-sun.svg') no-repeat;
+}
+
+.switch-theme .kight-icn{
+    background: url('../images/');
+}
+
+/*********************/
+
+main {
+    position: relative;
+}
+
+main .todo__container {
+    position: relative;
+    top:-60px;
+    background: #25273C;
+    border-radius: 6px;
+    color: #CACDE8;
+    box-shadow: 0 0 24px rgba(0,0,0,.4);
+    overflow: hidden;
+}
+
+.todo-items_body > div {
+    box-sizing: border-box;
+    padding: .7em 1.8em .6em 2.4em;
+    position: relative;
+    transition: background .8s;
+    display: flex;
+    align-items: center;
+}
+.todo-items_body > div:hover {
+    background: #161722;
+}
+.todo-items_body > div:hover .todo-item__close {
+    opacity: 1;
+}
+
+main .todo__container .todo-items_footer{
+    display: flex;
+    font-size: .7em;
+    justify-content: space-between;
+    padding: .4em .6em;
+    box-sizing: border-box;
+}
+
+main .todo__container .todo-items_footer ._sort-items > span, 
+main .todo__container .todo-items_footer ._clear-todos{
+    cursor: pointer;
+}
+
+/**************/
+
+.todo-item__close {
+    position: absolute;
+    right: 12px; top:18px;
+    width: 16px; height: 16px;
+    background: url('../images/icon-cross.svg') center center no-repeat;
+    opacity: 0;
+    transition: opacity .8s;
+    cursor: pointer;
+}
