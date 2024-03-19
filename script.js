@@ -1,7 +1,8 @@
 const todoList = document.getElementById('todo_list');
 
 var data = [];
-
+const limitToView = 5;
+var leftTodo = 0;
 /***** Helpers *****/
 
 function removeTodo() {
@@ -18,13 +19,47 @@ function removeTodo() {
 }
 
 function changeComplited() {
-    console.log('1')
+    var dataId = this.parentNode.dataset.id;
+    var item = todoList.querySelector("[data-id="+"'"+dataId+"']")
+
+    data.forEach((arr,i) => {
+        if (arr.id == dataId) {
+            data[i].completed = !data[i].completed;
+        }
+    });
+
+    toggleTodoStatus(dataId, this.checked)
 }
 
+function sendTodo() {
+    console.log('1')
+    const formAdd = document.querySelector('#todo-form');
+    const input = formAdd.querySelector('input[name="todo__text"]');
+    const checkbox = formAdd.querySelector('input[name="todo__statuc"]');
+    if (validateInput(input)) {
+        console.log(input.value)
+        console.log(checkbox.checked)
+        addTodoItem({
+            title: input.value,
+            completed: checkbox.checked   
+        })
+        input.value = ''
+    } else return
+}
+
+function validateInput(input) {
+    console.log(input)
+    if (input.value == '' || input.value == ' ') {
+        alert('input empty')
+    } else {
+        return true
+    }
+}
 /***** DOM events *****/
 
 function createTodoList() {
     console.log(data)
+
     for (var i = 0; i<data.length; i++) {
         createTodoItem(data[i]);
     }
@@ -32,6 +67,8 @@ function createTodoList() {
 }
 
 function createTodoItem(data) {
+    console.log('createTodoItem')
+    console.log(data)
     const div = document.createElement('div');
     div.dataset.id = data.id;
     div.innerHTML = `
@@ -56,20 +93,21 @@ function createTodoItem(data) {
 /***** Events *****/
 document.addEventListener('DOMContentLoaded', initApp);
 
+document.addEventListener('DOMContentLoaded', ()=> {
+    const sendTodoBtn = document.querySelector('._send-todo');
+    const sendTodoForm = document.querySelector('#todo-form');
+    sendTodoBtn.addEventListener('click', sendTodo);
+    sendTodoForm.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        sendTodo()
+    })
+})
+
 function initApp() {
     Promise.all([getAllTodos()])
         .then (values => {[data] = values;
             createTodoList()
         })
-}
-
-
-function deleteRemoveTodoEvent(div) {
-    div.removeEventListener('click',removeTodo);
-}
-
-function createToggleStatus(div) {
-    div.querySelector('input').addEventListener('change',()=>toggleTodoStatus());
 }
 
 document.addEventListener('DOMContentLoaded', getAllTodos)
@@ -87,9 +125,9 @@ async function getAllTodos() {
     }
 }
 
-async function toggleTodoStatus(dataId, status) {
+async function toggleTodoStatus(dataId, completed) {
     try {
-        const response = await fetch(`'https://jsonplaceholder.typicode.com/todos?_limit=10/${dataId}'`, {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${dataId}`, {
             method: 'PATCH' ,
             body: JSON.stringify({completed:completed}),
             headers: {'Content-Type': 'application/json'}
@@ -117,6 +155,25 @@ async function deleteTodoItem(dataId) {
         console.log('DELETE_Error:_' + error)
     }
         
+}
+
+async function addTodoItem(todo) {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
+            method: 'POST',
+            body: JSON.stringify(todo),
+            headers: {'Content-Type': 'application/json'}
+        })
+
+        const newTodo = await response.json();
+
+        createTodoItem(newTodo)
+        if (!response.ok) {
+            throw new Error('Failed to connect with the server! Please try later');
+        }
+    } catch(error) {
+        console.log('DELETE_Error:_' + error)
+    }
 }
 /***** Helpers *****/
 

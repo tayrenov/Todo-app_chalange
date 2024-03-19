@@ -65,17 +65,27 @@ input[type='checkbox']{
 .todo__container form {
     position: relative;
 }
+.todo__container form input[type='text']:focus+._send-todo {
+    opacity: 1;
+}
+
 
 .todo__container form input[type='text']{
     width: 100%;
     box-sizing: border-box;
-    padding: .8em 1em .6em 2.4em;
+    padding: .8em 2.4em .6em 2.4em;
     border: none;
+    background-color:none;
     background:#25273C;
     color:#777A92;
     border-radius: 6px;
     box-shadow: 0 0 24px rgba(0,0,0,.4);
     outline: none;
+}
+
+.todo__container form input[type='text']:-internal-autofill-selected {
+    background-color:#25273C!important;
+    background:#25273C!important;
 }
 .todo__container form input[type='text']:focus {
     color:#E4E5F1;
@@ -153,4 +163,16 @@ main .todo__container .todo-items_footer ._clear-todos{
     opacity: 0;
     transition: opacity .8s;
     cursor: pointer;
+}
+
+._send-todo {
+    position: absolute;
+    right: 16px;
+    top:17px;
+    width: 18px; height: 18px;
+    background: url('../images/icon-check.svg') center center no-repeat;
+    opacity: 1;
+    transition: opacity .8s;
+    cursor: pointer;
+    background-size:contain;
 }
