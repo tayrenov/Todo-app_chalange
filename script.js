@@ -287,6 +287,7 @@ async function addTodoItem(todo) {
 
         const newTodo = await response.json();
 
+        data.push(newTodo)
         createTodoItem(newTodo)
         if (!response.ok) {
             throw new Error('Failed to connect with the server! Please try later');
