@@ -45,7 +45,8 @@ function sendTodo() {
             title: input.value,
             completed: checkbox.checked   
         })
-        input.value = ''
+        input.value = '';
+        checkbox.checked = false;
     } else return
 }
 
@@ -92,16 +93,42 @@ function sortTodos() {
         }break;
     }
 }
+
+function clearComplitedTodos() {
+    sortData = []
+    data.forEach((arr) => {
+        console.log(arr)
+        if (!arr.completed) {
+            
+            sortData.push(arr)
+        }
+    })
+    data = sortData;
+    createTodoList(sortData)
+}
 /***** DOM events *****/
 
+function emptyTodoList() {
+    todoList.innerHTML='<div class="emptyTodoList">TodoList is empty</div>';
+}
+
 function createTodoList(data) {
-    console.log(data)
-    todoList.innerHTML=''
-    for (var i = 0; i<data.length; i++) {
-        createTodoItem(data[i]);
+
+    if (data.length > 0) {
+        console.log(data)
+        todoList.innerHTML='';
+        leftTodo = 0;
+        for (var i = 0; i<data.length; i++) {
+            if (i < limitToView) {
+                createTodoItem(data[i]);
+            } else leftTodo++
+        }
+    
+        printTodosFooter()
+    } else {
+        emptyTodoList()
     }
 
-    printTodosFooter()
 }
 
 function createTodoItem(data) {
@@ -135,7 +162,7 @@ function printTodosFooter() {
 
     var leftItems = document.createElement('div');
     leftItems.className = '_left-items';
-    leftItems.innerHTML = `<span> <span> items left`
+    leftItems.innerHTML = `<span>${leftTodo}<span> items left`
     console.log('leftItems')
 
     footer.prepend(leftItems)
@@ -206,7 +233,7 @@ function printTodosFooter() {
     var clearItems = document.createElement('div');
     clearItems.className = '_clear-todos';
     clearItems.innerHTML = 'Clear Completed';
-    clearItems.setAttribute('onclick', 'testFunc()');
+    clearItems.setAttribute('onclick', 'clearComplitedTodos()');
     footer.append(clearItems)
 }
 

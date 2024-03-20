@@ -157,6 +157,9 @@ main .todo__container .todo-items_footer ._clear-todos{
     cursor: pointer;
 }
 
+.todo-items_body > div.emptyTodoList {
+    padding: 1.2em 1.8em .6em 2.4em;
+}
 /**************/
 
 .todo-item__close {
