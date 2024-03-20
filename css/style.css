@@ -148,6 +148,10 @@ main .todo__container .todo-items_footer{
     box-sizing: border-box;
 }
 
+main .todo__container .todo-items_footer .active {
+    font-weight: 600;
+}
+
 main .todo__container .todo-items_footer ._sort-items > span, 
 main .todo__container .todo-items_footer ._clear-todos{
     cursor: pointer;
