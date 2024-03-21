@@ -11,16 +11,25 @@ function removeTodo() {
     var dataId = this.parentNode.dataset.id;
     var item = todoList.querySelector("[data-id="+"'"+dataId+"']")
 
-    data = data.filter(data => data.id !== dataId);
+    var newData =[];
+    data.forEach((arr)=>{
+        if (arr.id != dataId) {
+            newData.push(arr);
+        }
+    });
+    data = newData;
 
     item.querySelector('input').removeEventListener('change', changeComplited)
     item.querySelector('div').removeEventListener('click', removeTodo)
 
     deleteTodoItem(dataId)
+    createTodoList(data)
     item.remove()
 }
 
 function changeComplited() {
+
+    changeCustomCheckbox(this)
     var dataId = this.parentNode.dataset.id;
     var item = todoList.querySelector("[data-id="+"'"+dataId+"']")
 
@@ -59,6 +68,10 @@ function validateInput(input) {
     }
 }
 
+function changeCustomCheckbox(el) {
+    console.log('1')
+    el.parentNode.querySelector('.custom-iput').classList.toggle('active')
+}
 /***** SORT *****/
 
 function sortTodos() {
@@ -145,12 +158,19 @@ function createTodoItem(data) {
     input.checked = data.completed;
     input.addEventListener('change', changeComplited);
 
+    const customInput = document.createElement('div');
+    customInput.className = 'custom-iput';
+    if (data.completed) {
+        customInput.classList.add('active')
+    }
+
     const closeIcon = document.createElement('div');
     closeIcon.className = 'todo-item__close';
     closeIcon.addEventListener('click', removeTodo)
 
-    todoList.prepend(div)
+    todoList.append(div)
     div.prepend(input)
+    div.prepend(customInput)
     div.append(closeIcon)
 
 
@@ -295,6 +315,7 @@ async function deleteTodoItem(dataId) {
             headers: {'Content-Type': 'application/json'}
         })
         console.log('DELETE complited')
+
         if (!response.ok) {
             throw new Error('Failed to connect with the server! Please try later');
         }

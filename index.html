@@ -24,7 +24,8 @@
       <div class="switch-theme dark-icn"></div>
     
       <form id="todo-form">
-        <input type="checkbox" name="todo__statuc">
+        <div class="custom-iput"></div>
+        <input type="checkbox" name="todo__statuc" onchange="changeCustomCheckbox(this)">
         <input id="todo__text" type="text" name="todo__text" placeholder="Create new todo...">
         <div class="_send-todo"> </div>
         <input type="button" hidden>
@@ -45,14 +46,15 @@
         </div>
       </div>
     </div>
+
+    <div class="attribution">Drag and drop to reorder list</div>
+  
   </main>
 
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+  <footer>
+    Challenge by&nbsp;<a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by&nbsp;<a href="https://github.com/tayrenov/Todo-app_chalange">Aleksey Korovin</a>.
+  </footer>
 
   <script src="script.js"></script>
 </body>
