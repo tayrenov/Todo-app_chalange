@@ -23,8 +23,52 @@ body._dark header {
     background-size: cover;
 }
 
+body._light header {
+    background: linear-gradient(0deg, rgba(87,143,255,1) 0%, rgba(192,88,243,1) 0%);
+    background: url('../images/bg-desktop-light.jpg') center center no-repeat;
+    background-size: cover;
+}
+
 body._dark main {
     background: #161722;
+}
+body._light main {
+    background: #D2D3DB;
+}
+
+body._light .todo__container form input[type='text'] {
+    background: #fff;
+}
+
+body._light main .todo__container {
+    background: #fff;
+    color:#4f5975;
+}
+
+body._light main .todo__container .todo-items_footer span {
+    color:#4f5975;
+}
+body._light main .todo__container .todo-items_footer span.active:hover > span {
+    color:#4f5975;
+}
+body._light main .todo__container .todo-items_footer span:hover {
+    color:#122355;
+}
+
+body._light main .todo__container .todo-items_footer ._clear-todos {
+    color:#4f5975;
+}
+
+body._light main .todo__container .todo-items_footer ._clear-todos:hover {
+    color:#122355;
+}
+
+body._light main .todo-items_body > div:hover {
+    background: #E4E5F1;
+}
+
+body._light footer {
+    color: #4f5975;
 }
 
 header .todo__container {
@@ -108,6 +152,10 @@ input[type='checkbox']{
     background: url('../images/icon-sun.svg') no-repeat;
 }
 
+.switch-theme.light-icn{
+    background: url('../images/icon-moon.svg') no-repeat;
+}
+
 .switch-theme .kight-icn{
     background: url('../images/');
 }
@@ -147,11 +195,10 @@ main .todo__container {
 .custom-iput {
     width: 20px;
     height: 20px;
-
     position: absolute;
     left: 10px; top:15px;
     border-radius: 12px;
-    border:1px solid #fff;
+    border:1px solid #d3d3d3;
     box-sizing: border-box;
 }
 
@@ -211,7 +258,7 @@ main .todo__container .todo-items_footer ._clear-todos{
 }
 
 .todo-items_body > div.emptyTodoList {
-    padding: 1.2em 1.8em .6em 2.4em;
+    padding: 1.2em 0.8em .6em .8em;
 }
 
 main .attribution {
@@ -254,4 +301,8 @@ footer {
     transition: opacity .8s;
     cursor: pointer;
     background-size:contain;
+}
+
+.text-through {
+    text-decoration: line-through; 
 }

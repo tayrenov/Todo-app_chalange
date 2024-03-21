@@ -36,6 +36,7 @@ function changeComplited() {
     data.forEach((arr,i) => {
         if (arr.id == dataId) {
             data[i].completed = !data[i].completed;
+            item.querySelector('span').classList.toggle('text-through')
         }
     });
 
@@ -149,9 +150,7 @@ function createTodoItem(data) {
     console.log(data)
     const div = document.createElement('div');
     div.dataset.id = data.id;
-    div.innerHTML = `
-        <span>${data.title}</span>
-    ` 
+
 
     const input = document.createElement('input');
     input.type = 'checkbox';
@@ -163,6 +162,17 @@ function createTodoItem(data) {
     if (data.completed) {
         customInput.classList.add('active')
     }
+
+    if(data.completed) {
+        div.innerHTML = `
+            <span class='text-through'>${data.title}</span>
+        ` 
+    } else {
+        div.innerHTML = `
+            <span>${data.title}</span>
+        ` 
+    }
+
 
     const closeIcon = document.createElement('div');
     closeIcon.className = 'todo-item__close';
@@ -353,5 +363,27 @@ function checkStatus(status) {
     } else {
         console.log(status)
         return ''
+    }
+}
+
+/***** Light Theme *****/
+
+function toggleTheme(btn) {
+    const body = document.querySelector('body');
+    console.log(body)
+    console.log(btn)
+
+    if (body.className == '_dark') {
+        body.classList.remove('_dark')
+        body.classList.add('_light')
+
+        btn.classList.remove('dark-icn')
+        btn.classList.add('light-icn')
+    } else {
+        body.classList.add('_dark')
+        body.classList.remove('_light')
+
+        btn.classList.add('dark-icn')
+        btn.classList.remove('light-icn')
     }
 }
