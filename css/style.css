@@ -10,6 +10,7 @@ body {
     font-size: 18px;
     font-family: "Josefin-Sans";
     min-height: 660px;
+    min-width: 920px;
 }
 
 header {
