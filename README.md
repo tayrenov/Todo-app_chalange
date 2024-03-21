@@ -1,3 +1,14 @@
+
+https://tayrenov.github.io/Todo-app_chalange/
+
+Проект сделан с интересом к javascript
+Отсутствует мобильная версия и часть стилей
+
+###########################
+###########################
+###########################
+
+
 # Frontend Mentor - Todo app
 
 ![Design preview for the Todo app coding challenge](./design/desktop-preview.jpg)
